@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $USER == root ]]: then
+if [[ $USER == 'root' ]]: then
   echo "$(mkdir /usr/bin/LiriMain)"
   echo "$(cp ~/assistant.sh /usr/bin/LiriMain)"
   echo -e "export Liri=/usr/bin/LiriMain/assistant.sh" >> /root/.bashrc
