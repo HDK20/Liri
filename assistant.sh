@@ -22,7 +22,7 @@ echo "
 © Created by Mahdiyar
 "
 
-echo -e "Hi ${white}$USER${clear}, I'm Liri" | boxes -d face
+echo -e "Hi ${white}$USER${clear}, I'm Liri\a" | boxes -d face
 
 while [ true ]
 do
@@ -150,7 +150,7 @@ Which editor do you want to open?(enter IDE name without space/ n = no): ${yello
 			echo "On your own system or spotify?(o/s)"
 			read location
 			if [[ $location == o ]]; then
-    				echo "$(dolphin /home/$USER/Music)"
+    				echo "$(dolphin /home/$USER/Music &> /dev/null &)"
 			else
     				echo "$(firefox https://www.spotify.com &> /dev/null &)"
 			fi
@@ -160,18 +160,39 @@ Which editor do you want to open?(enter IDE name without space/ n = no): ${yello
 			echo "$(windscribe-cli connect best)"
 			;;
 
-		vpnoff | vpndown)
+		vpnoff | vpn\ off | vpndown)
 			echo "$(windscribe-cli disconnect)"
 			;;
-
+                Map | map | location | mylocation)
+			echo "$(firefox https://www.google.com/maps &> /dev/null &)"
+			;;
+		film | movie | video)
+			echo -en "Which one? (${cyan}D${clear}isney or ${cyan}N${clear}etflix) : ${cyan}"
+			read movie
+			echo -en "${clear}"
+			if [[ $movie == n ]] | [[ $movie == N ]]; then
+				echo "$(firefox https://www.netflix.com &> /dev/null &)"
+			else
+				echo"$(firefox https://www.disneyplus.com &> /dev/null &)" 
+			fi
+			;;
 		clear)
 			echo "$(clear)"
+			;;
+		amazon | Amazon)
+			echo -e "${red}Warning${clear} : You are serving the devil by doing this, it is better to use shops or other online shops"
+			sleep 3
+			echo "$(firefox https://www.amazon.com &> /dev/null &)"
 			;;
 
 		alphabet)
 			echo -n {A..Z}
 			echo -e "\n"
 			echo {a..z}
+			;;
+
+		clock | time | date)
+			echo -e "${yellow}$(date)${clear}"
 			;;
 
 		whoami)
